@@ -1,9 +1,9 @@
 import {DefinePlugin, Configuration} from 'webpack';
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import * as dotenv from 'dotenv';
 import WebpackBar from 'webpackbar';
 const path  = require("path");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDev = process.env.NODE_ENV === 'development' // 是否是开发模式
 
@@ -16,9 +16,9 @@ const cssRegex = /\.css$/;
 const lessRegex = /\.less$/;
 
 const styleLoaderArray = [
-    "style-loader",
+    isDev ? "style-loader" : MiniCssExtractPlugin.loader,
     {
-        loader: isDev ? "css-loader" : MiniCssExtractPlugin.loader,
+        loader:  "css-loader",
         options: {
             modules: {
                 //localIdentName：配置生成的css类名组成（path路径，name文件名，local原来的css类名, hash: base64:5拼接生成hash值5位，具体位数可根据需要设置）。

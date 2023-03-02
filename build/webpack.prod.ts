@@ -2,7 +2,7 @@ import { Configuration } from 'webpack';
 import { merge } from 'webpack-merge';
 import baseConfig from "./webpack.base";
 import CopyPlugin from "copy-webpack-plugin";
-// import {BundleAnalyzerPlugin} from "webpack-bundle-analyzer";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 const path = require('path');
 
@@ -18,7 +18,9 @@ const prodConfig: Configuration = merge(baseConfig, {
                 }
             ]
         }),
-        // new BundleAnalyzerPlugin() // 配置分析打包结果插件
+        new MiniCssExtractPlugin({
+            filename: "static/css/[name].css",
+        })
     ]
 });
 
