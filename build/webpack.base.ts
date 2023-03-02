@@ -33,7 +33,7 @@ const baseConfig:Configuration = {
     entry: path.join(__dirname, "../src/index.tsx"),
     // 出口
     output: {
-        filename: "static/js/[name].js", // 每个输出js的名称
+        filename: "static/js/[name].[chunkhash:8].js", // 每个输出js的名称
         path: path.join(__dirname, "../dist"), // 打包结果输出路径
         clean: true, // webpack4需要配置clean-webpack-plugin来删除dist文件,webpack5内置了
         publicPath: "/", // 打包后文件的公共前缀路径
@@ -83,7 +83,7 @@ const baseConfig:Configuration = {
                     },
                 },
                 generator: {
-                    filename: 'static/images/[hash][ext][query]',  // 文件输出目录和命名
+                    filename: 'static/images/[name].[contenthash:8][ext][query]',  // 文件输出目录和命名
                 }
             },
             {
@@ -96,7 +96,7 @@ const baseConfig:Configuration = {
                     }
                 },
                 generator: {
-                    filename: 'static/fonts/[hash][ext][query]', // 文件输出目录和命名
+                    filename: 'static/fonts/[name].[contenthash:8][ext][query]', // 文件输出目录和命名
                 },
             },
             {
@@ -109,14 +109,14 @@ const baseConfig:Configuration = {
                     }
                 },
                 generator: {
-                    filename: 'static/media/[hash][ext][query]', // 文件输出目录和命名
+                    filename: 'static/media/[name].[contenthash:8][ext][query]', // 文件输出目录和命名
                 },
             },
             {
                 test: /\.json$/,
                 type: 'asset/source',
                 generator: {
-                    filename: "static/json/[name].[hash][ext][query]",
+                    filename: "static/json/[name].[contenthash:8][ext][query]",
                 }
             },
         ]
