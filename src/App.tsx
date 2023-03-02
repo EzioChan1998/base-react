@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, Suspense, lazy} from "react";
 import '@/App.css';
 import lessStyles from './app.less';
 import smallImage from '@/assets/images/small.png';
@@ -7,9 +7,12 @@ import memberList from '@/assets/json/test.json';
 import Person from '@/components/Person';
 import InputWithView from "@/components/InputWithView";
 
+const LazyComponent = lazy(() => import("@/components/LazyComponent"));
+
 function App() {
 
     const [members, setMembers] = useState<any[]>([]);
+    const [isShowLazy, setIsShowLazy] = useState<boolean>(false);
 
     useEffect(() => {
         try {
@@ -18,6 +21,10 @@ function App() {
             
         }
     }, []);
+
+    const handleShowLazy = () => {
+        setIsShowLazy(v => !v);
+    };
 
     return (
         <div>
@@ -36,6 +43,10 @@ function App() {
             <Person />
             <InputWithView />
             <div>测试添加一些东西导致文件修改，但是node_modules没变，测试vendor的hash是否变化</div>
+
+            <button type="button" onClick={handleShowLazy}>展示LazyComponent</button>
+            {/* show为true时加载LazyDemo组件 */}
+            { isShowLazy && <Suspense fallback={null}><LazyComponent /></Suspense> }
         </div>
     )
 }

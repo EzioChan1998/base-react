@@ -6,7 +6,9 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import TerserPlugin from 'terser-webpack-plugin'
 import CompressionPlugin from 'compression-webpack-plugin'
+import { PurgeCSSPlugin } from 'purgecss-webpack-plugin';
 
+const globAll = require('glob-all')
 const path = require('path');
 
 const prodConfig: Configuration = merge(baseConfig, {
@@ -36,6 +38,20 @@ const prodConfig: Configuration = merge(baseConfig, {
     optimization: {
         minimizer: [
             new CssMinimizerPlugin(), // 压缩css
+            new PurgeCSSPlugin({
+                paths: globAll.sync(
+                    [`${path.join(__dirname, '../src')}/**/*`, path.join(__dirname, '../public/index.html')],
+                    {
+                        nodir: true,
+                    }
+                ),
+                // 用 only 来指定 purgecss-webpack-plugin 的入口
+                only: ["dist"],
+                safelist: {
+                    standard: [/^ant-/], // 过滤以ant-开头的类名，哪怕没用到也不删除
+                },
+                blocklist: [],
+            }),
             new TerserPlugin({
                 parallel: true, // 开启多线程压缩
                 terserOptions: {
