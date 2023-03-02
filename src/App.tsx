@@ -35,6 +35,7 @@ function App() {
             )}
             <Person />
             <InputWithView />
+            <div>测试添加一些东西导致文件修改，但是node_modules没变，测试vendor的hash是否变化</div>
         </div>
     )
 }
