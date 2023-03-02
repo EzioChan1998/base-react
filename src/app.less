@@ -1,0 +1,15 @@
+.content-box {
+  background: darkorange;
+
+  &:before{
+    @arr: 'hello', 'world';
+    content: `@{arr}.join(' ').toUpperCase()`;
+  }
+}
+
+.bg-box {
+  width: 192px;
+  height: 108px;
+  background: url("@/assets/images/bg.jpg") no-repeat;
+  background-size: 100% 100%;
+}
