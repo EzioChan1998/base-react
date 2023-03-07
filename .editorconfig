@@ -1,0 +1,13 @@
+# https://editorconfig.org
+root = true  # 设置为根目录， 控制配置文件editorconfig是否生效的字段
+
+[*] # 匹配全部文件，匹配除了 `/` 路径分隔符之外的任意字符串
+charset = utf-8                         # 设置字符编码
+end_of_line = crlf                      # 设置换行符
+indent_size = 2                         # 设置缩进大小
+indent_style = space                    # 设置缩进风格
+insert_final_newline = true             # true表示文件以空行结尾
+trim_trailing_whitespace = true         # 删除一行中的空格
+
+[*.md] # 匹配md文件
+trim_trailing_whitespace = false
