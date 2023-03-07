@@ -1,4 +1,6 @@
-import React, { useEffect, useState, Suspense, lazy } from 'react';
+import React, {
+  useEffect, useState, Suspense, lazy,
+} from 'react';
 import '@/App.css';
 import lessStyles from './app.less';
 import smallImage from '@/assets/images/small.png';
