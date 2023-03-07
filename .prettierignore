@@ -1,0 +1,10 @@
+node_modules
+dist
+env
+.idea
+.gitignore
+yarn.lock
+yarn-error.log
+README.md
+.npmrc
+Dockerfile

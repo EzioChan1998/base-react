@@ -13,9 +13,13 @@
     "build:pre": "cross-env NODE_ENV=production BASE_ENV=pre webpack -c build/webpack.prod.ts",
     "build:prod": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.prod.ts",
     "build:analy": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.analy.ts",
-    "view": "serve dist"
+    "view": "serve dist",
+    "lint:prettier": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,html,md}\""
   },
-  "keywords": ["learning", "react"],
+  "keywords": [
+    "learning",
+    "react"
+  ],
   "author": "EZIO_CHAN",
   "license": "ISC",
   "dependencies": {
@@ -52,11 +56,17 @@
     "less-loader": "^11.1.0",
     "mini-css-extract-plugin": "^2.7.2",
     "postcss-loader": "^7.0.2",
+    "prettier": "^2.8.4",
     "purgecss-webpack-plugin": "^5.0.0",
     "react-refresh": "^0.14.0",
     "serve": "^14.2.0",
     "speed-measure-webpack-plugin": "^1.5.0",
     "style-loader": "^3.3.1",
+    "stylelint": "^15.2.0",
+    "stylelint-config-css-modules": "^4.2.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-standard": "^30.0.1",
+    "stylelint-order": "^6.0.2",
     "terser-webpack-plugin": "^5.3.6",
     "thread-loader": "^3.0.4",
     "ts-node": "^10.9.1",
