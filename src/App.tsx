@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useState, Suspense, lazy,
-} from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
 import '@/App.css';
 import lessStyles from './app.less';
 import smallImage from '@/assets/images/small.png';
@@ -8,8 +6,12 @@ import memberList from '@/assets/json/test.json';
 
 import Person from '@/components/Person';
 import InputWithView from '@/components/InputWithView';
+import TypeErrorTest from '@/components/TypeErrorTest';
 
 const LazyComponent = lazy(() => import('@/components/LazyComponent'));
+
+// 添加一个未使用变量
+// const a = 1;
 
 function App() {
   const [members, setMembers] = useState<any[]>([]);
@@ -18,7 +20,9 @@ function App() {
   useEffect(() => {
     try {
       setMembers(JSON.parse(memberList as any));
-    } catch (e) {}
+    } catch (e) {
+      console.error(e);
+    }
   }, []);
 
   const handleShowLazy = () => {
@@ -54,6 +58,8 @@ function App() {
           <LazyComponent />
         </Suspense>
       )}
+      <span>添加一些东西测试lint-staged是否成功</span>
+      <TypeErrorTest />
     </div>
   );
 }

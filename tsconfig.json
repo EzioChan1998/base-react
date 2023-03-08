@@ -10,6 +10,7 @@
     "typeRoots": ["./typings/*.d.ts", "node_modules/@types"],
     "baseUrl": ".",
     "resolveJsonModule": true, /* 解决引用json报错 */
+    "noEmit": true, /* 执行tsc之后不生成输出文件 */
     "paths": {
       "@/*": ["src/*"]
     },
