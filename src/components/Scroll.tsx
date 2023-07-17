@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 
 const arr = new Array<number>(40).fill(0).map((item, index) => index);
 
@@ -53,4 +53,4 @@ const Scroll = (
   );
 };
 
-export default Scroll;
+export default memo(Scroll);
