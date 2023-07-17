@@ -1,4 +1,11 @@
-import React, { useEffect, useState, Suspense, lazy } from 'react';
+import React, {
+  useEffect,
+  useState,
+  Suspense,
+  lazy,
+  useMemo,
+  useRef
+} from 'react';
 import '@/App.css';
 import lessStyles from './app.less';
 import smallImage from '@/assets/images/small.png';
@@ -7,6 +14,7 @@ import memberList from '@/assets/json/test.json';
 import Person from '@/components/Person';
 import InputWithView from '@/components/InputWithView';
 import TypeErrorTest from '@/components/TypeErrorTest';
+import Scroll from '@/components/Scroll';
 
 const LazyComponent = lazy(() => import('@/components/LazyComponent'));
 
@@ -29,8 +37,40 @@ function App() {
     setIsShowLazy((v) => !v);
   };
 
+  const [count, setCount] = useState(0);
+  const handleClick = () => {
+    setCount((v) => v + 1);
+  };
+
+  const testObj = useMemo(
+    () => ({
+      p1: 1,
+      p2: 2,
+      p3: 3
+    }),
+    []
+  );
+
+  const testRef = useRef({
+    p1: 1,
+    p2: 2,
+    p3: 3
+  });
+
   return (
     <div>
+      <h1 onClick={handleClick}>{count}</h1>
+      <Scroll testObj={testObj} text={'使用memo'} />
+      <Scroll testObj={testRef.current} text={'使用ref'} />
+      <Scroll
+        testObj={{
+          p1: 1,
+          p2: 2,
+          p3: 3
+        }}
+        text={'直接传递'}
+      />
+
       <h2>Hello Ezio</h2>
       <div className={lessStyles['content-box']}></div>
       <div>
